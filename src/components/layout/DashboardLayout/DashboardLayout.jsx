@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import { useAuth } from '../../../hooks/useAuth';
+import Loader from '../../common/Loader/Loader';
 import '../../../Dashboard.css';
 
 const DashboardLayout = ({ children, requireAdmin }) => {
@@ -36,7 +37,7 @@ const DashboardLayout = ({ children, requireAdmin }) => {
   }, [navigate, requireAdmin]);
 
   if (loading) {
-    return <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>Loading...</div>;
+    return <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}><Loader /></div>;
   }
 
   return (

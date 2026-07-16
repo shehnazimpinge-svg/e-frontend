@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const BASE_URL = import.meta.env.VITE_API_URL || 'https://e-com-zpvs.onrender.com/api';
 
 export const useAuth = () => {
   const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ export const useAuth = () => {
   const createOrder = (orderData) => requestApi('POST', '/orders', orderData);
   const updateOrderStatus = (id, status) => requestApi('PUT', `/orders/${id}/status`, { status });
 
-  return { 
+  return {
     login, registerAuth, forgotPassword, resetPassword, getMe, loading,
     getDashboardStats, getProducts, addProduct, editProduct, deleteProduct,
     getOrders, createOrder, updateOrderStatus

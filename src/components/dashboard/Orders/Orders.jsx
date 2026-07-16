@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../../hooks/useAuth';
+import Loader from '../../common/Loader/Loader';
 
 const Orders = ({ user }) => {
   const [orders, setOrders] = useState([]);
@@ -54,7 +55,7 @@ const Orders = ({ user }) => {
 
       <div className="content-card" style={{ padding: 0, overflow: 'hidden' }}>
         {loading ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: '#6b7280' }}>Loading orders...</div>
+          <Loader />
         ) : orders.length === 0 ? (
           <div style={{ padding: '40px', textAlign: 'center', color: '#6b7280' }}>No orders found.</div>
         ) : (

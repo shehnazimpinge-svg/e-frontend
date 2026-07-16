@@ -58,7 +58,7 @@ const Header = ({ user }) => {
         <div className="avatar" onClick={() => { setShowProfileMenu(!showProfileMenu); setShowNotifMenu(false); }} style={{ overflow: 'hidden' }}>
           {user?.avatar && user.avatar !== 'no-photo.jpg' ? (
             <img 
-              src={`http://localhost:3000${user.avatar}`} 
+              src={`${(import.meta.env.VITE_API_URL || 'http://localhost:3000/api').replace('/api', '')}${user.avatar}`}
               alt="Avatar" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />

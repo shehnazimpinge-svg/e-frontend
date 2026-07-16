@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNotifications } from '../../../hooks/useNotifications';
+import Loader from '../../common/Loader/Loader';
 
 const Notifications = () => {
   const { notifications, loading, fetchNotifications, markAsRead, markAllAsRead } = useNotifications();
@@ -28,7 +29,7 @@ const Notifications = () => {
 
       <div className="content-card" style={{ padding: 0, overflow: 'hidden' }}>
         {loading ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: '#6b7280' }}>Loading notifications...</div>
+          <Loader />
         ) : notifications.length === 0 ? (
           <div style={{ padding: '40px', textAlign: 'center', color: '#6b7280' }}>You have no notifications.</div>
         ) : (

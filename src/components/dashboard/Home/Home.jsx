@@ -4,6 +4,7 @@ import {
   BarChart, Bar, Legend, AreaChart, Area, PieChart, Pie, Cell
 } from 'recharts';
 import { useAuth } from '../../../hooks/useAuth';
+import Loader from '../../common/Loader/Loader';
 
 const Home = ({ user }) => {
   const isAdmin = user?.role === 'admin';
@@ -37,7 +38,7 @@ const Home = ({ user }) => {
     fetchDashboardStats();
   }, [filter]);
 
-  if (loading) return <div style={{ padding: '40px', textAlign: 'center', color: '#6b7280' }}>Loading dashboard...</div>;
+  if (loading) return <Loader />;
 
   return (
     <div>

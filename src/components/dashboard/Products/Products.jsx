@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useCart } from '../../../context/CartContext';
 import { useAuth } from '../../../hooks/useAuth';
+import Loader from '../../common/Loader/Loader';
 
 const Products = ({ user }) => {
   const [products, setProducts] = useState([]);
@@ -145,7 +146,7 @@ const Products = ({ user }) => {
       </div>
 
       {loading ? (
-        <div style={{ padding: '40px', textAlign: 'center', color: '#6b7280' }}>Loading products...</div>
+        <Loader />
       ) : (
         <div style={{ 
           display: 'grid', 

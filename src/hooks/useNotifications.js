@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const API_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/auth', '/notifications') : 'http://localhost:3000/api/notifications';
+const API_URL = `${import.meta.env.VITE_API_URL || 'https://e-com-zpvs.onrender.com/api'}/notifications`;
 
 export const useNotifications = () => {
   const [notifications, setNotifications] = useState([]);
@@ -32,8 +32,8 @@ export const useNotifications = () => {
       await axios.put(`${API_URL}/${id}/read`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      
-      setNotifications(prev => 
+
+      setNotifications(prev =>
         prev.map(n => n._id === id ? { ...n, isRead: true } : n)
       );
       setUnreadCount(prev => Math.max(0, prev - 1));
@@ -48,7 +48,7 @@ export const useNotifications = () => {
       await axios.put(`${API_URL}/mark-all`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      
+
       setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
       setUnreadCount(0);
       toast.success('All notifications marked as read');

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import Loader from '../../common/Loader/Loader';
 
 const AdminNotifications = () => {
   const [users, setUsers] = useState([]);
@@ -19,7 +20,7 @@ const AdminNotifications = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:3000/api/auth/users', {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/auth/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(response.data.data);
@@ -39,7 +40,7 @@ const AdminNotifications = () => {
     setSending(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:3000/api/notifications', 
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/notifications`, 
       {
         user: selectedUser,
         title,
@@ -69,7 +70,7 @@ const AdminNotifications = () => {
 
       <div className="content-card" style={{ maxWidth: '600px' }}>
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '20px' }}>Loading users...</div>
+          <Loader />
         ) : (
           <form onSubmit={handleSendNotification}>
             <div style={{ marginBottom: '20px' }}>

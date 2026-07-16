@@ -10,7 +10,7 @@ const Profile = ({ user, setUser }) => {
   const [phone, setPhone] = useState(user?.phone || '');
   const [address, setAddress] = useState(user?.address || '');
   const [file, setFile] = useState(null);
-  const [preview, setPreview] = useState(user?.avatar && user.avatar !== 'no-photo.jpg' ? `http://localhost:3000${user.avatar}` : null);
+  const [preview, setPreview] = useState(user?.avatar && user.avatar !== 'no-photo.jpg' ? `${(import.meta.env.VITE_API_URL || 'http://localhost:3000/api').replace('/api', '')}${user.avatar}` : null);
   
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
@@ -38,7 +38,7 @@ const Profile = ({ user, setUser }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:3000/api/auth/updatedetails', formData, {
+      const response = await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/auth/updatedetails`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`
@@ -83,7 +83,7 @@ const Profile = ({ user, setUser }) => {
           boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
         }}>
           {user?.avatar && user.avatar !== 'no-photo.jpg' ? (
-            <img src={`http://localhost:3000${user.avatar}`} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src={`${(import.meta.env.VITE_API_URL || 'http://localhost:3000/api').replace('/api', '')}${user.avatar}`} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           ) : (
             user?.name?.charAt(0)?.toUpperCase()
           )}
