@@ -64,7 +64,7 @@ export const useAuth = () => {
   const updateOrderStatus = (id, status) => requestApi('PUT', `/orders/${id}/status`, { status });
 
   return {
-    login, registerAuth, forgotPassword, resetPassword, getMe, loading,
+    login, register: registerAuth, registerAuth, forgotPassword, resetPassword, getMe, loading,
     getDashboardStats, getProducts, addProduct, editProduct, deleteProduct,
     getOrders, createOrder, updateOrderStatus
   };
