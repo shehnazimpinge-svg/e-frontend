@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useCart } from '../../../context/CartContext';
+import { useAuth } from '../../../hooks/useAuth';
 
 const Checkout = ({ user }) => {
   const navigate = useNavigate();
