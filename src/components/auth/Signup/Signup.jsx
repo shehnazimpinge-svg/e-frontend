@@ -6,7 +6,7 @@ import SplitLayout from '../../layout/SplitLayout/SplitLayout';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { register: registerAuth, loading } = useAuth();
+  const { registerAuth, loading } = useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onChange' });
 
   const onSubmit = async (data) => {
