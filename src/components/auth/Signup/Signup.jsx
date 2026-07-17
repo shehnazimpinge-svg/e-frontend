@@ -6,12 +6,17 @@ import SplitLayout from '../../layout/SplitLayout/SplitLayout';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { registerAuth, loading } = useAuth();
+  const { registerAuth, register: legacyRegisterAuth, loading } = useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onChange' });
+  const createAccount = registerAuth || legacyRegisterAuth;
 
   const onSubmit = async (data) => {
     try {
-      await registerAuth(data.name, data.email, data.password);
+      if (typeof createAccount !== 'function') {
+        throw new Error('Signup API is not available');
+      }
+
+      await createAccount(data.name, data.email, data.password);
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
       // Error handled by toaster in useAuth
